@@ -5,6 +5,7 @@ import { useLazyGetSummaryQuery } from "../services/article"; // hook
 const Demo = () => {
   const [article, setArticle] = useState({ url: "", summary: "" });
   const [allArticles, setAllArticles] = useState([]);
+  const [copied, setCopied] = useState("");
 
   // Hook
   const [getSummary, { error, isFetching }] = useLazyGetSummaryQuery();
@@ -34,6 +35,13 @@ const Demo = () => {
       localStorage.setItem("articles", JSON.stringify(updatedAllArticles));
     }
   };
+
+  const handleCopy = (copyUrl) => {
+    setCopied(copyUrl);
+    navigator.clipboard.writeText(copyUrl);
+    setTimeout(() => setCopied(false), 3000);
+  };
+
   return (
     <section className="mt-16 w-full max-w-x1">
       {/* Search */}
@@ -67,7 +75,8 @@ const Demo = () => {
             >
               <div className="copy_btn">
                 <img
-                  src={copy}
+                  src={copied === item.url ? tick : copy}
+                  onClick={() => handleCopy(item.url)}
                   alt="copy_icon"
                   className="w-[40%] object-contain"
                 />
@@ -96,7 +105,7 @@ const Demo = () => {
           article.summary && (
             <div className="flex flex-col gap-3">
               <h2 className="font-satoshi font-bold text-gray-600 text-xl">
-                Article <span className="blue_gradient">Summary</span>
+                Article <span className="orange_gradient">Summary</span>
               </h2>
               <div className="summary_box">
                 <p className="font-inter font-medium text-sm text-gray-700">
