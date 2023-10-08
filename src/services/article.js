@@ -15,14 +15,15 @@ export const articleApi = createApi({
         "X-RapidAPI-Host",
         "article-extractor-and-summarizer.p.rapidapi.com"
       );
+
       return headers;
     }
   }),
   endpoints: (builder) => ({
     getSummary: builder.query({
+      // encodeURIComponent() function encodes special characters that may be present in the parameter values
+      // If we do not properly encode these characters, they can be misinterpreted by the server and cause errors or unexpected behavior. Thus that RTK bug
       query: (params) =>
-      // whenever you pass user-generated content, use encodeURIComponent
-      // to handle special characters that it may contains 
         `summarize?url=${encodeURIComponent(
           params.articleUrl
         )}&length=${SUMMARY_LENGTH}`
