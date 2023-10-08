@@ -83,9 +83,12 @@
 <div align="center">
   <img src="https://i.ibb.co/HDrx5Sh/Screenshot-2023-10-08-at-2-14-14-AM.png" alt="product screenshot"/>
 </div>
+<br />
+
 Simplify your readings with Summize, an open-source article summarizer that transforms lengthy articles into clear and concise summaries.
 
-The goals of this project were to:
+
+### The goals of this project were to:
 * setup a ReactJS project using Vite
 * create a responsive, beautiful UI/UX with a nice touch of glass morphism using Tailwind CSS
 * make advanced RTK query API requests that fire on condition
